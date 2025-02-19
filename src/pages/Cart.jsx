@@ -10,8 +10,6 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const user = useSelector((state) => state.user);
 
-  console.log("_____cartItems", cartItems);
-
   const handleRemoveFromCart = (productId) => {
     dispatch(removeFromCart(productId));
   };
@@ -46,7 +44,7 @@ const Cart = () => {
       ) : (
         <div>
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
+            <table className="min-w-full divide-y divide-gray-200 hidden md:table">
               <thead className="bg-gray-100">
                 <tr>
                   <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">Product</th>
@@ -89,6 +87,40 @@ const Cart = () => {
               </tbody>
             </table>
           </div>
+          {/* Mobile Layout */}
+          <div className="md:hidden">
+            {cartItems.map((item) => (
+              <div key={item.id} className="flex flex-col border-b border-gray-200 p-4">
+                <div className="flex items-center mb-2">
+                  <img src={item.category.image} alt={item.title} className="w-16 h-16 object-cover rounded" />
+                  <span className="ml-2 text-gray-700">{item.title}</span>
+                </div>
+                <div className="flex justify-between mb-2">
+                  <div>
+                    <label className="text-sm text-gray-600">Quantity</label>
+                    <input
+                      type="number"
+                      value={item.quantity}
+                      onChange={(e) => handleUpdateQuantity(item.id, parseInt(e.target.value))}
+                      min="1"
+                      className="border rounded w-16 px-2 text-center"
+                    />
+                  </div>
+                  <div className="text-gray-700">Total: ${(item.price * item.quantity).toFixed(2)}</div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <div className="text-gray-700">${item.price.toFixed(2)}</div>
+                  <button
+                    onClick={() => handleRemoveFromCart(item.id)}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
           <div className="mt-4">
             <h2 className="text-xl font-bold">Total Amount: ${totalAmount.toFixed(2)}</h2>
             <button

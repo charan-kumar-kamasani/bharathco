@@ -32,7 +32,6 @@ const Navbar = ({ onSearchChange }) => {
     }
   }, []);
 
-
   return (
     <nav className="flex items-center justify-between p-4 shadow-md bg-white fixed top-0 left-0 w-full z-50">
       <div className="flex items-center">
@@ -52,7 +51,9 @@ const Navbar = ({ onSearchChange }) => {
           className="px-4 py-2 w-3/4 md:w-64 rounded border-2 border-gray-300"
         />
       </div>
-
+      <Link to="/cart" className=" md:hidden text-gray-700 w-16">
+        🛒 ({totalItemsInCart})
+      </Link>
       <div className="hidden md:flex items-center space-x-5 text-red-500">
         {username ? (
           <>
@@ -89,6 +90,20 @@ const Navbar = ({ onSearchChange }) => {
             </Link>
           ))}
           <hr className="my-2" />
+          <div className=" md:hidden ">
+            <>
+              {username ? (
+                <>
+                  <span className="text-gray-700">{username}</span>
+                </>
+              ) : (
+                <Link to="/login" className="text-gray-700">
+                  Login
+                </Link>
+              )}
+              <hr className="my-2" />
+            </>
+          </div>
           <Link to="/orders" className="block py-2 text-gray-700">
             My Orders
           </Link>
