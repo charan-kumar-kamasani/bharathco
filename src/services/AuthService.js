@@ -4,7 +4,7 @@ import { sendSignInLinkToEmail, signInWithEmailLink, isSignInWithEmailLink } fro
 export const sendLoginLink = async (email) => {
   try {
     const actionCodeSettings = {
-      url: "http://localhost:5173/",
+      url: "https://bharathco.netlify.app",
       handleCodeInApp: true,
     };
 
