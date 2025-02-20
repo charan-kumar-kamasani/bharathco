@@ -77,7 +77,7 @@ const Navbar = ({ onSearchChange }) => {
 
       {menuOpen && (
         <div className="absolute top-16 left-0 w-50 bg-white shadow-md p-4">
-          <Link to="/" className="block py-2">
+          <Link to="/" className="block py-2" onClick={() => setMenuOpen(false)}>
             All
           </Link>
           {categories.map((category) => (
@@ -85,6 +85,7 @@ const Navbar = ({ onSearchChange }) => {
               key={category.id}
               to={`/category/${category.name}`}
               className="block py-2"
+              onClick={() => setMenuOpen(false)}
             >
               {category.name}
             </Link>
@@ -104,13 +105,13 @@ const Navbar = ({ onSearchChange }) => {
               <hr className="my-2" />
             </>
           </div>
-          <Link to="/orders" className="block py-2 text-gray-700">
+          <Link to="/orders" className="block py-2 text-gray-700" onClick={() => setMenuOpen(false)}>
             My Orders
           </Link>
-          <Link to="/my-account" className="block py-2 text-gray-700">
+          <Link to="/my-account" className="block py-2 text-gray-700" onClick={() => setMenuOpen(false)}>
             My Account
           </Link>
-          <Link to="/cart" className="block py-2 text-gray-700">
+          <Link to="/cart" className="block py-2 text-gray-700" onClick={() => setMenuOpen(false)}>
             Cart ({totalItemsInCart})
           </Link>
         </div>
