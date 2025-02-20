@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="flex p-4">
           <div className="flex-1 pr-2">
-            <h3 className="font-bold text-lg mb-1">{product.title}</h3>
+            <h3 className="font-bold text-sm mb-1">{product.title}</h3>
           </div>
           <div className="flex-none w-1/3">
             <p className="text-blue-500 font-semibold text-right">
